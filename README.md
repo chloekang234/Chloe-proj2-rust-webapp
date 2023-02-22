@@ -1,6 +1,2 @@
-# rust-new-project-template
-A good starting point for a new Rust project
-
-## References
-
-* [rust-cli-template](https://github.com/kbknapp/rust-cli-template)
+# a functional rust web application using spotify API
+The link for API token: https://developer.spotify.com/console/get-search-item/?q=Muse&type=track&market=US&limit=5&offset=5&include_external=
