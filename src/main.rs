@@ -6,8 +6,8 @@ D. /version that returns the version of the service
 */
 
 use actix_web::{get, web, App, HttpResponse, HttpServer, Responder};
-use reqwest::Client;
 use reqwest::header::{ACCEPT, AUTHORIZATION, CONTENT_TYPE};
+use reqwest::Client;
 use serde::{Deserialize, Serialize};
 use serde_json;
 use std::collections::HashMap;
@@ -38,7 +38,6 @@ async fn get_access_tocken() -> Result<AccessToken, reqwest::Error> {
     Ok(body)
 }
 
-
 //create a function that returns a hello world
 #[get("/")]
 async fn hello() -> impl Responder {
@@ -52,11 +51,15 @@ async fn search(query: web::Query<HashMap<String, String>>) -> HttpResponse {
     let access_token = match access_token_result {
         Ok(token) => token.access_token,
         Err(err) => {
-            return HttpResponse::InternalServerError().body(format!("Failed to get access token: {}", err));
+            return HttpResponse::InternalServerError()
+                .body(format!("Failed to get access token: {}", err));
         }
     };
     let client = Client::new();
-    let url = format!("https://api.spotify.com/v1/search?q={}&type=track", query.into_inner()["q"]);
+    let url = format!(
+        "https://api.spotify.com/v1/search?q={}&type=track",
+        query.into_inner()["q"]
+    );
     let res = client
         .get(&url)
         .header("Authorization", format!("Bearer {}", access_token))
@@ -71,7 +74,10 @@ async fn search(query: web::Query<HashMap<String, String>>) -> HttpResponse {
     for track in tracks {
         let name = track["name"].as_str().unwrap().to_owned();
         let artist = track["artists"][0]["name"].as_str().unwrap().to_owned();
-        let url = track["external_urls"]["spotify"].as_str().unwrap().to_owned();
+        let url = track["external_urls"]["spotify"]
+            .as_str()
+            .unwrap()
+            .to_owned();
         let result = format!("Name: {} - Artist: {} - URL: {}", name, artist, url);
         results.push(result);
     }
@@ -84,11 +90,7 @@ async fn main() -> std::io::Result<()> {
     // add a print message to the console that the server is running
     println!("Server running");
     // start the server
-    HttpServer::new(|| {
-        App::new()
-            .service(hello)
-            .service(search)
-    })
+    HttpServer::new(|| App::new().service(hello).service(search))
         .bind("0.0.0.0:8080")?
         .run()
         .await

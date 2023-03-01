@@ -6,6 +6,12 @@ rust-version:
 	rustup --version			#rust toolchain manager
 	clippy-driver --version		#rust linter
 
+build: 
+	docker build -t music .
+
+rundocker:
+	docker run -it --rm -p 8080:8080 music
+
 format:
 	cargo fmt --quiet
 
