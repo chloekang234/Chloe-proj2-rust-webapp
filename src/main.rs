@@ -1,6 +1,6 @@
 /*An actix Microservice that has multiple routes:
 A.  / that turns a welcome page
-B. /fruit that returns search results depending on the keyword
+B. /search?q={keyword} that returns search results depending on the keyword
 C. /health that returns a 200 status code
 D. /version that returns the version of the service
 */
