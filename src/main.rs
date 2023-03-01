@@ -99,14 +99,19 @@ async fn health() -> impl Responder {
     HttpResponse::Ok()
 }
 
-
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     // add a print message to the console that the server is running
     println!("Server running");
     // start the server
-    HttpServer::new(|| App::new().service(hello).service(search).service(health).service(version))
-        .bind("0.0.0.0:8080")?
-        .run()
-        .await
+    HttpServer::new(|| {
+        App::new()
+            .service(hello)
+            .service(search)
+            .service(health)
+            .service(version)
+    })
+    .bind("0.0.0.0:8080")?
+    .run()
+    .await
 }
