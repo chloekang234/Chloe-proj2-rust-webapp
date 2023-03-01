@@ -5,9 +5,13 @@
 In Project 2, the purpose is to build a functional microservice rust web application deployed automatically to Kubernetes cluster. Kubernetes is a powerful tool for managing containerized applications at scale, providing a flexible and robust platform for deploying and managing applications in the cloud. I built a simple Microservice for music search app that can search songs with the keyword using rust actix web and Spotify API. There are following 4 microservice routes, `/`, `/search?q=keyword`, `/health`, `/version`:
 
 A. / that turns a welcome page
+
 B. /search?q={keyword} that returns search results depending on the keyword
+
 C. /health that returns a 200 status code
+
 D. /version that returns the version of the service
+
 
 
 ## Project Structure
