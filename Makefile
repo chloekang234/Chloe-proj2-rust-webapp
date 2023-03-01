@@ -7,10 +7,10 @@ rust-version:
 	clippy-driver --version		#rust linter
 
 build: 
-	docker build -t music .
+	docker build -t music_app .
 
 rundocker:
-	docker run -it --rm -p 8080:8080 music
+	docker run -it --rm -p 8080:8080 music_app
 
 format:
 	cargo fmt --quiet
