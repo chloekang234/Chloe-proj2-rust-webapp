@@ -12,6 +12,9 @@ D. /version that returns the version of the service
 
 ## Project Structure
 
+<img width="258" alt="image" src="https://user-images.githubusercontent.com/104106034/222206266-6018f375-08be-4e25-8afe-b687db74acea.png">
+
+
 ## Preparation
 1. `cargo init`
 
